@@ -8,7 +8,7 @@ interface ApiResponse {
     status: string;
 }
   
-  export const userLogin = createApi({
+export const userLogin = createApi({
     reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
     endpoints: (build) => ({
