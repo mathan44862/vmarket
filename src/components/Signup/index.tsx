@@ -1,4 +1,4 @@
-import { Button, MenuItem, Select, SelectChangeEvent, Stack, TextField } from "@mui/material";
+import { Button, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, Stack, TextField } from "@mui/material";
 import './index.css';
 import { useTypewriter } from "react-simple-typewriter";
 import { useFormik } from "formik";
@@ -15,7 +15,6 @@ export default function Signup() {
     setUserType(event.target.value as string);
   };
 
-
   const [text] = useTypewriter({
     words: ["From Farm to Fork: Fresh Veggies Delivered to Your Doorstep"],
   });
@@ -23,9 +22,9 @@ export default function Signup() {
     email : '',
     password : '',
     name:'',
-    confirmpasssword:'',
+    confirmpassword:'',
     contact:'',
-
+    userType: 'buyer',
   }
   const {values, handleBlur, handleChange, handleSubmit, errors, touched, isValid, dirty} = useFormik({
     initialValues: initialValues,
@@ -39,13 +38,27 @@ export default function Signup() {
     }
   });
   
+  console.log(values);
 
   return (
     <>
       <h3 style={{ marginLeft: '2%', color: '#a3b18a' }}>{text}</h3>
-      <Stack marginTop={"1%"} alignItems={"center"} id="background">
+      <Stack  alignItems={"center"} id="background">
         <h4 style={{color:'white'}}>Enter your details !!</h4><br />
         <form onSubmit={handleSubmit}>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          name="userType"
+          value={values.userType} 
+          onChange={handleChange} 
+          style={{ flexDirection: 'row' }} 
+          className="radioGroup"
+        >
+          <FormControlLabel value="buyer" control={<Radio />} sx={{color:'white'}} label="Buyer" />
+          <FormControlLabel value="seller" control={<Radio />} sx={{color:'white'}} label="Seller" />
+        </RadioGroup>
+
+          <br />
           <TextField 
             id="outlined-basic" 
             label="Email" 
@@ -99,8 +112,7 @@ export default function Signup() {
                 color: 'white',
               },
             }}
-            name="password"
-            type="password"
+            name="name"
             onBlur={handleBlur}
             onChange={handleChange}
           />
@@ -116,13 +128,13 @@ export default function Signup() {
               },
               '& .MuiOutlinedInput-root': { 
                 '& fieldset': { 
-                  borderColor: errors.confirmpasssword && touched.confirmpasssword ? 'red' : '#a3b18a',
+                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
                 },
                 '&:hover fieldset': {
-                  borderColor: errors.confirmpasssword && touched.confirmpasssword ? 'red' : '#a3b18a',
+                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: errors.confirmpasssword && touched.confirmpasssword ? 'red' : '#a3b18a',
+                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
                 },
               },
               '& .MuiInputLabel-outlined.Mui-focused': {
@@ -146,13 +158,13 @@ export default function Signup() {
               },
               '& .MuiOutlinedInput-root': { 
                 '& fieldset': { 
-                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
+                  borderColor: errors.confirmpassword && touched.confirmpassword ? 'red' : '#a3b18a',
                 },
                 '&:hover fieldset': {
-                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
+                  borderColor: errors.confirmpassword && touched.confirmpassword ? 'red' : '#a3b18a',
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
+                  borderColor: errors.confirmpassword && touched.confirmpassword ? 'red' : '#a3b18a',
                 },
               },
               '& .MuiInputLabel-outlined.Mui-focused': {
@@ -176,13 +188,13 @@ export default function Signup() {
               },
               '& .MuiOutlinedInput-root': { 
                 '& fieldset': { 
-                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
+                  borderColor: errors.contact && touched.contact ? 'red' : '#a3b18a',
                 },
                 '&:hover fieldset': {
-                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
+                  borderColor: errors.contact && touched.contact ? 'red' : '#a3b18a',
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
+                  borderColor: errors.contact && touched.contact ? 'red' : '#a3b18a',
                 },
               },
               '& .MuiInputLabel-outlined.Mui-focused': {
@@ -190,44 +202,10 @@ export default function Signup() {
               },
             }}
             name="contact"
-            type="password"
+            type="number"
             onBlur={handleBlur}
             onChange={handleChange}
           />
-          <br /><br />
-          <Select
-  labelId="demo-simple-select-label"
-  id="demo-simple-select"
-  value={userType}
-  label="User - Type"
-  onChange={handleSelectChange}
-  sx={{
-    width: '40vh',
-    '& .MuiInputLabel-root': { 
-      color: 'red', 
-    },
-    '& .MuiOutlinedInput-root': { 
-      '& fieldset': { 
-        borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
-      },
-      '&:hover fieldset': {
-        borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: errors.password && touched.password ? 'red' : '#a3b18a',
-      },
-    },
-    '& .MuiInputLabel-outlined.Mui-focused': {
-      color: 'white',
-    },
-  }}
->
-  <MenuItem value={10}>Buyer</MenuItem>
-  <MenuItem value={20}>Seller</MenuItem>
-</Select>
-
-
-
           <br /><br />
           <Button 
             variant="contained" 

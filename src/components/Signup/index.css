@@ -13,3 +13,16 @@ body {
       font-size: 11px; 
     }
   }
+
+/* index.css */
+.radioGroup .MuiRadio-root {
+  color: white; /* Change the color of the radio button */
+}
+
+.radioGroup .MuiRadio-root:hover {
+  background-color: transparent; /* Set the hover background color to transparent */
+}
+
+.radioGroup .MuiRadio-root.Mui-checked {
+  color: white; /* Change the color of the checked radio button */
+}
