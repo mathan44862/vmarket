@@ -3,17 +3,13 @@ import './index.css';
 import { useTypewriter } from "react-simple-typewriter";
 import { useFormik } from "formik";
 import userLoginValidation from "./utils";
-import { useUserLoginMutation } from "../../apis/user";
+import { useUserLoginMutation, useUserSignUpMutation } from "../../apis/user";
 import React from "react";
 
 export default function Signup() {
-  const [user,setuser]=useUserLoginMutation();
+  const [signUp,setSignUp]=useUserSignUpMutation();
 
   const [userType, setUserType] = React.useState('');
-
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    setUserType(event.target.value as string);
-  };
 
   const [text] = useTypewriter({
     words: ["From Farm to Fork: Fresh Veggies Delivered to Your Doorstep"],
@@ -26,19 +22,18 @@ export default function Signup() {
     contact:'',
     userType: 'buyer',
   }
-  const {values, handleBlur, handleChange, handleSubmit, errors, touched, isValid, dirty} = useFormik({
+  const {values, handleBlur, handleChange, handleSubmit, errors, touched, isValid, dirty,resetForm} = useFormik({
     initialValues: initialValues,
     validationSchema: userLoginValidation,
     onSubmit: async (values) => {
       try {
-        const response = await user(values);
+        const payload = {...values};
+        const response = await signUp(payload);
       } catch (error) {
          console.error('Unexpected error during sign-in:', error);
       }
     }
   });
-  
-  console.log(values);
 
   return (
     <>
@@ -220,7 +215,6 @@ export default function Signup() {
               }
             }}
             type="submit"
-            disabled={!(isValid && dirty)}
           >
             Sign up
           </Button>

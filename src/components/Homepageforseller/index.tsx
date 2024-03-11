@@ -3,7 +3,7 @@ import NavBar from '../Navbar';
 import InputBase from '@mui/material/InputBase';
 import { alpha, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Body from '../Body';
+import Body from '../BodyPageforBuyer';
 
 const Search = styled('div')(({ theme }) => ({
   display: 'flex',

@@ -1,16 +1,18 @@
 import {  createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BASE_URL } from '../constants';
 
 interface UserLoginDetails{
     email:String,
     password:String
 }
+
 interface ApiResponse {
     status: string;
 }
   
-export const userLogin = createApi({
+export const userApis = createApi({
     reducerPath: 'userApi',
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
+    baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (build) => ({
       userLogin: build.mutation<ApiResponse,UserLoginDetails>({
         query: (payload) => ({
@@ -19,7 +21,14 @@ export const userLogin = createApi({
           method: 'POST'
         })
       }),
+      userSignUp: build.mutation<ApiResponse,UserLoginDetails>({
+        query: (payload) => ({
+          url: `/signup`, 
+          body: payload,
+          method: 'POST'
+        })
+      }),
     })
 });
   
-export const {useUserLoginMutation} = userLogin;
+export const {useUserLoginMutation,useUserSignUpMutation} = userApis;
