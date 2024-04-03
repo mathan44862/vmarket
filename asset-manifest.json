@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/vmarket/static/css/main.03f753d8.css",
+    "main.js": "/vmarket/static/js/main.741d6f7d.js",
+    "static/js/592.bf6ca574.chunk.js": "/vmarket/static/js/592.bf6ca574.chunk.js",
+    "static/media/Background.jpg": "/vmarket/static/media/Background.44945c659df54fb06730.jpg",
+    "index.html": "/vmarket/index.html",
+    "main.03f753d8.css.map": "/vmarket/static/css/main.03f753d8.css.map",
+    "main.741d6f7d.js.map": "/vmarket/static/js/main.741d6f7d.js.map",
+    "592.bf6ca574.chunk.js.map": "/vmarket/static/js/592.bf6ca574.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03f753d8.css",
+    "static/js/main.741d6f7d.js"
+  ]
+}
