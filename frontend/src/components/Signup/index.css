@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap');
+body {
+    background-image: url('Background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center; 
+    height: 100;
+    font-family: "Protest Revolution", sans-serif;
+}
+@media (max-width: 600px) {
+    h3 {
+      font-size: 11px; 
+    }
+  }
+
+/* index.css */
+.radioGroup .MuiRadio-root {
+  color: white; /* Change the color of the radio button */
+}
+
+.radioGroup .MuiRadio-root:hover {
+  background-color: transparent; /* Set the hover background color to transparent */
+}
+
+.radioGroup .MuiRadio-root.Mui-checked {
+  color: white; /* Change the color of the checked radio button */
+}
